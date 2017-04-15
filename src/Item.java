@@ -1,4 +1,4 @@
-public class Item(){
+public class Item{
  
   int quantity;
   String name;
@@ -9,19 +9,19 @@ public class Item(){
     
   }
   
-  private add(){
+  private void add(){
     
   }
   
-  private updateInfo(){
+  private void updateInfo(){
     
   }
   
-  private delete(){
+  private void delete(){
     
   }
   
-  private notifySeller(){
+  private void notifySeller(){
     
   }
   

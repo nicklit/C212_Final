@@ -40,6 +40,7 @@ public class Seller{
   }
   
   private String search(){
+	return null;
     
   }
 }

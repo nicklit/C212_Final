@@ -1,6 +1,8 @@
-public class MarketPlaceAdmin implements MarketPlace{
+import java.io.FileNotFoundException;
+
+public class MarketPlaceAdmin extends MarketPlace{
   
-  public MarketPlaceAdmin(){
+  public MarketPlaceAdmin() throws FileNotFoundException{
     
   }
   
@@ -9,10 +11,12 @@ public class MarketPlaceAdmin implements MarketPlace{
   }
   
   private String listBuyers(){
+	return null;
     
   }
   
   private String listSellers(){
+	return null;
     
   }
   
@@ -21,18 +25,22 @@ public class MarketPlaceAdmin implements MarketPlace{
   }
   
   private String listItems(Seller s){
+	return null;
     
   }
   
   private String purchaseHistory(Buyer b){
+	return null;
     
   }
   
   private String showShipping(Item i){
+	return null;
     
   }
   
   private String salesHistory(Seller s){
+	return null;
     
   }
   
@@ -45,6 +53,7 @@ public class MarketPlaceAdmin implements MarketPlace{
   }
   
   private String search(){
+	return null;
     
   }
 }
