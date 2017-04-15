@@ -1,13 +1,14 @@
 public class Buyer{
  
   
-  public Buyer(){
+	
+	public Buyer(){
     
-  }
+	}
   
-  private void register(){
+	private void register(){
     
-  }
+	}
   
   private void login(){
     
@@ -22,10 +23,12 @@ public class Buyer{
   }
   
   private String viewMarketPlaceItems(){
+	return null;
     
   }
   
   private String search(){
+	return null;
     
   }
   
