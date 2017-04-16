@@ -1,3 +1,4 @@
-ID,Username,Password
-1,Admin,Alpine
-2,Nick,Mountain
+ID,Username,Password,Type
+1,Admin,Alpine,MarketPlaceAdmin
+2,Nick,Mountain,Buyer
+3,Kane,Benjamin,Seller
