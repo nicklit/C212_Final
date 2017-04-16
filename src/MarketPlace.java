@@ -3,6 +3,7 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.Scanner;
 
 
@@ -18,15 +19,9 @@ public class MarketPlace{
   
   public MarketPlace() throws FileNotFoundException{
 	  //******MAKE SURE TO CHANGE THIS TO WHEREVER YOUR FILE IS*******************
-	  /**
-	   * Scanner scanner = new Scanner(new File("C:\\Users\\littreln\\Documents\\GitHub\\C212_Final\\bin\\creds.csv"));
-	   
-	  scanner.useDelimiter(",");
-      while(scanner.hasNextLine()){
-          System.out.print(scanner.next()+"|");
-      }
-      scanner.close();
-      */
+	  	  
+	  Scanner scan = new Scanner(new File("C:\\Users\\littreln\\Documents\\GitHub\\C212_Final\\bin\\creds.csv"));
+	  
 	  
 	  
 	  
@@ -38,16 +33,18 @@ public class MarketPlace{
 		  String input = reader1.next();
 		  
 		  if(input.equals("login")){
-			  loggedin=true;
 			  System.out.println("Enter your username");
 			  String userSelect = reader1.next();
 			  System.out.println("Enter your password");
 			  String passSelect = reader1.next();
 			  
 			  //this is where I validate the username and password
-			  
-			  System.out.println("logged in");
-			  System.out.println("\n"+helpMenu());
+			  if(checkLogin(userSelect,passSelect)){
+				  System.out.println("logged in");
+				  System.out.println("\n"+helpMenu());
+			  }else{
+				  System.out.println("incorrect combination, please try again add something here");
+			  }
 		  }
 		  else if (input.equals("logout")){
 			  loggedin=false;
@@ -67,38 +64,7 @@ public class MarketPlace{
 		  }
 	  }
 	  
-	  /**
-	   
-	  String thisLine;
-	   BufferedReader reader = new BufferedReader(new FileReader("C:\\Users\\littreln\\Documents\\GitHub\\C212_Final\\bin\\creds.csv"));
-	    try
-	    {
-
-	       thisLine = reader.readLine();
-	       System.out.print(thisLine);
-
-	       while((thisLine = reader.readLine()) != null)               
-	           {
-	               thisLine = thisLine.trim();
-	               String username = thisLine.split(" ")[0];
-	                if (user.displayUserName().equals(username))
-	                {
-	                System.out.print("\nUser <-" + user.displayUserName() + " -> exists!");
-	                break;   // break the loop
-	                }                    
-	           }
-
-	    }
-	    catch(IOException e)
-	    {
-	        System.out.print("\nUser does not exist\n"); 
-	        e.printStackTrace();
-	    } 
-	    finally {
-	        try {
-	            reader.close();
-	        } catch (IOException e) { /* ignore */ //}
-	    //} **/
+	  
   }
   
   private String helpMenu(){
@@ -137,6 +103,43 @@ public class MarketPlace{
   private String search(){
 	return null;
     
+  }
+  
+  private boolean checkLogin(String username, String password) throws FileNotFoundException{
+	  
+	   
+	  String thisLine;
+	   BufferedReader reader = new BufferedReader(new FileReader("C:\\Users\\littreln\\Documents\\GitHub\\C212_Final\\bin\\creds.csv"));
+	    try
+	    {
+	       thisLine = reader.readLine();
+	       while((thisLine = reader.readLine()) != null)               
+	           {
+	               thisLine = thisLine.trim();
+	               String[] items = thisLine.split(",");
+	               String user = items[1];
+	               String pass = items[2];
+	               if (user.equals(username)){
+	            	   if (pass.equals(password)){
+	            		   loggedin=true;
+	            		   break;
+	            	   }
+	               }                  
+	           }
+
+	    }
+	    catch(IOException e)
+	    {
+	        System.out.print("\nUser does not exist\n"); 
+	        e.printStackTrace();
+	    } 
+	    finally {
+	        try {
+	            reader.close();
+	        } catch (IOException e) { /* ignore */ }
+	    } 
+	return loggedin;
+	  
   }
   
   
