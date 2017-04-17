@@ -18,13 +18,7 @@ public class MarketPlace{
 	}
   
   public MarketPlace() throws FileNotFoundException{
-	  //******MAKE SURE TO CHANGE THIS TO WHEREVER YOUR FILE IS*******************
-	  	  
-	  Scanner scan = new Scanner(new File("C:\\Users\\littreln\\Documents\\GitHub\\C212_Final\\bin\\creds.csv"));
-	  
-	  
-	  
-	  
+
 	  Scanner reader1 = new Scanner(System.in);
 	  System.out.println("Welcome!\n");
 	  System.out.println(helpMenu());
@@ -39,7 +33,7 @@ public class MarketPlace{
 			  String passSelect = reader1.next();
 			  
 			  //this is where I validate the username and password
-			  if(checkLogin(userSelect,passSelect)){
+			  if(login(userSelect,passSelect)){
 				  System.out.println("logged in");
 				  System.out.println("\n"+helpMenu());
 			  }else{
@@ -67,6 +61,7 @@ public class MarketPlace{
 	  
   }
   
+  //we may need to move this method to each indiviual class to customize it for the type of user
   private String helpMenu(){
 	  String help = "Enter a command below (without the quotes) to continue.\n\n";
 	  
@@ -92,9 +87,6 @@ public class MarketPlace{
     
   }
   
-  private void login(){
-    
-  }
   
   private void updateCreds(){
     
@@ -105,12 +97,12 @@ public class MarketPlace{
     
   }
   
-  private boolean checkLogin(String username, String password) throws FileNotFoundException{
+  private boolean login(String username, String password) throws FileNotFoundException{ 
 	  
-	   
-	  String thisLine;
+	   //******MAKE SURE TO CHANGE THIS TO WHEREVER YOUR FILE IS*******************
 	   BufferedReader reader = new BufferedReader(new FileReader("C:\\Users\\littreln\\Documents\\GitHub\\C212_Final\\bin\\creds.csv"));
-	    try
+	   String thisLine; 
+	   try
 	    {
 	       thisLine = reader.readLine();
 	       while((thisLine = reader.readLine()) != null)               
