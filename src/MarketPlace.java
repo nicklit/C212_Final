@@ -31,6 +31,8 @@ public class MarketPlace {
 				String userSelect = reader1.next();
 				System.out.println("Enter your password");
 				String passSelect = reader1.next();
+				
+				userSelect = userSelect.toLowerCase();
 
 				// this is where I validate the username and password
 				if (login(userSelect, passSelect)) {
@@ -66,6 +68,7 @@ public class MarketPlace {
 		if (loggedin) {
 			help += "\"logout\" to logout\n";
 		} else {
+			help += "\"register\" to register\n";
 			help += "\"login\" to login\n";
 		}
 		help += "\"search\" to search for items\n";
@@ -75,35 +78,64 @@ public class MarketPlace {
 
 	private void register() throws FileNotFoundException {
 		
-		int newID = makeID();
+		boolean unique;
 		
-		String newUsername = "Nick";
+		String newUsername;
 		
-		
-		
-		BufferedReader reader = new BufferedReader(
-				new FileReader("bin/creds.csv"));
-		String thisLine;
-		try {
-			thisLine = reader.readLine();
-			while ((thisLine = reader.readLine()) != null) {
-				thisLine = thisLine.trim();
-				String[] items = thisLine.split(",");
+		do{
+			
+			System.out.println("Please enter a Username");
+			unique = true;
+			
+			Scanner userGetter = new Scanner(System.in);
+			
+			newUsername = userGetter.next();
+			newUsername = newUsername.toLowerCase();
+			
+			
+			BufferedReader reader = new BufferedReader(
+					new FileReader("bin/creds.csv"));
+			String thisLine;
+			try {
+				thisLine = reader.readLine();
+				while ((thisLine = reader.readLine()) != null) {
+					thisLine = thisLine.trim();
+					String[] items = thisLine.split(",");
+					String user = items[1];
+					user=user.toLowerCase();
+					
+					if(newUsername.equals(user)){
+						unique=false;
+						System.out.println("Not a unique Username. Please try again");
+					}
+				}
+			}catch (IOException e) {
+				e.printStackTrace();
+			} finally {
+				try {
+					reader.close();
+				} catch (IOException e) {
+					/* ignore */ }
 			}
-		}catch (IOException e) {
-			e.printStackTrace();
-		} finally {
+			
 			try {
 				reader.close();
 			} catch (IOException e) {
-				/* ignore */ }
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
 		}
+		while(!unique);
+		
+		int newID = makeID();
 		
 		try {
 			FileWriter pw = new FileWriter("bin/creds.csv",true);
 			StringBuilder sb = new StringBuilder();
 			
 			sb.append(Integer.toString(newID));
+			sb.append(",");
+			sb.append(newUsername);
 			
 			pw.write(sb.toString());
 			
