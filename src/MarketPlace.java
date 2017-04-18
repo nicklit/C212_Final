@@ -11,6 +11,8 @@ import java.util.Scanner;
 public class MarketPlace {
 
 	private boolean loggedin = false;
+	private Scanner userGetter;
+	private Scanner passGetter;
 
 	public static void main(String[] args) throws FileNotFoundException {
 		MarketPlace testMarketPlace = new MarketPlace();
@@ -78,54 +80,9 @@ public class MarketPlace {
 
 	private void register() throws FileNotFoundException {
 		
-		boolean unique;
+		String newUsername = uniqueUsername();
 		
-		String newUsername;
-		
-		do{
-			
-			System.out.println("Please enter a Username");
-			unique = true;
-			
-			Scanner userGetter = new Scanner(System.in);
-			
-			newUsername = userGetter.next();
-			newUsername = newUsername.toLowerCase();
-			
-			
-			BufferedReader reader = new BufferedReader(
-					new FileReader("bin/creds.csv"));
-			String thisLine;
-			try {
-				thisLine = reader.readLine();
-				while ((thisLine = reader.readLine()) != null) {
-					thisLine = thisLine.trim();
-					String[] items = thisLine.split(",");
-					String user = items[1];
-					user=user.toLowerCase();
-					
-					if(newUsername.equals(user)){
-						unique=false;
-						System.out.println("Not a unique Username. Please try again");
-					}
-				}
-			}catch (IOException e) {
-				e.printStackTrace();
-			} finally {
-				try {
-					reader.close();
-				} catch (IOException e) {
-					/* ignore */ }
-			}
-			
-			try {
-				reader.close();
-			} catch (IOException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
-		}
-		while(!unique);
+		String newPassword;
 		
 		int newID = makeID();
 		
@@ -179,6 +136,79 @@ public class MarketPlace {
 		
 		return (max+1);
 	}
+	
+	private String uniqueUsername() throws FileNotFoundException{
+		boolean unique;
+		
+		String newUsername;
+		
+		userGetter = new Scanner(System.in);
+		
+		do{
+			
+			System.out.print("Please enter a Username: ");
+			unique = true;
+			
+			
+			
+			newUsername = userGetter.next();
+			newUsername = newUsername.toLowerCase();
+			
+			
+			BufferedReader reader = new BufferedReader(
+					new FileReader("bin/creds.csv"));
+			String thisLine;
+			try {
+				thisLine = reader.readLine();
+				while ((thisLine = reader.readLine()) != null) {
+					thisLine = thisLine.trim();
+					String[] items = thisLine.split(",");
+					String user = items[1];
+					user=user.toLowerCase();
+					
+					if(newUsername.equals(user)){
+						unique=false;
+						System.out.println("Not a unique Username. Please try again");
+					}
+				}
+			}catch (IOException e) {
+				e.printStackTrace();
+			} finally {
+				try {
+					reader.close();
+				} catch (IOException e) {
+					/* ignore */ }
+			}
+			
+			try {
+				reader.close();
+				
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		}
+		while(!unique);
+		
+		
+		
+		return newUsername;
+	}
+	
+	private String newPassword(){
+		String newPassword;
+		
+		passGetter = new Scanner(System.in);
+		
+		System.out.print("Please enter a password: ");
+		newPassword = passGetter.next();
+		
+		
+		
+		return null;
+	}
+	
+	
 
 	private String viewStock() {
 		return null;
