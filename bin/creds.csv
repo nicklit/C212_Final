@@ -1,4 +1,5 @@
-ID,Username,Password,Type
-1,Admin,Alpine,MarketPlaceAdmin
-2,Nick,Mountain,Buyer
-3,Kane,Benjamin,Seller
+ID,Username,Password,Email,Type
+1,Admin,Alpine,admin@this.domain,MarketPlaceAdmin
+2,Nick,Mountain,nick@that.domain,Buyer
+3,Kane,Benjamin,kane@hello.world,Seller
+4
