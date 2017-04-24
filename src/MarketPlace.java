@@ -6,8 +6,11 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.ArrayList;
+import java.util.List;
 import java.util.Scanner;
 import java.util.regex.Pattern;
+
+import com.opencsv.CSVReader;
 
 
 public class MarketPlace {
@@ -24,6 +27,13 @@ public class MarketPlace {
 	}
 
 	public MarketPlace() throws FileNotFoundException {
+		
+		try {
+			updateCreds();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 
 		Scanner reader1 = new Scanner(System.in);
 		System.out.println("Welcome!\n");
@@ -160,7 +170,7 @@ public class MarketPlace {
 		
 		do{
 			
-			System.out.print("Please enter a Username: ");
+			System.out.print("Please enter a Username to register: ");
 			unique = true;
 			
 			newUsername = userGetter.next();
@@ -289,8 +299,17 @@ public class MarketPlace {
 
 	}
 
-	private void updateCreds() {
-
+	private void updateCreds() throws IOException {
+		File inputFile = new File("bin/creds.csv");
+		
+		CSVReader reader = new CSVReader(new FileReader(inputFile), ',');
+		
+		List<String[]> csvBody = reader.readAll();
+		
+		for (String[] creds : csvBody){
+			
+				System.out.println(creds[1]);
+		}
 	}
 
 	private String search() {
