@@ -4,6 +4,7 @@ public class Buyer{
 	
 	public Buyer(){
 		login();
+		System.out.println("Enter your password");
 	}
   
 	private void register(){
