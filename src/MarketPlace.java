@@ -6,8 +6,11 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.ArrayList;
+import java.util.List;
 import java.util.Scanner;
 import java.util.regex.Pattern;
+
+import com.opencsv.CSVReader;
 
 
 public class MarketPlace {
@@ -17,6 +20,7 @@ public class MarketPlace {
 	private Scanner passGetter;
 	private Scanner emailGetter;
 	private Scanner typeGetter;
+	private Scanner updater;
 
 	public static void main(String[] args) throws FileNotFoundException {
 		MarketPlace testMarketPlace = new MarketPlace();
@@ -41,10 +45,17 @@ public class MarketPlace {
 				userSelect = userSelect.toLowerCase();
 
 				// this is where I validate the username and password
-				if (login(userSelect, passSelect)) {
-					System.out.println("logged in");
-					System.out.println("\n" + helpMenu());
-				} else {
+				if (login(userSelect, passSelect).equals("Buyer")) {
+					Buyer buyer = new Buyer();
+					//System.out.println("\n" + helpMenu());
+				} else if(login(userSelect, passSelect).equals("MarketPlaceAdmin")) {
+					MarketPlaceAdmin admin = new MarketPlaceAdmin();
+				} else if (login(userSelect, passSelect).equals("MarketPlaceAdmin")) {
+					Seller seller = new Seller();
+				}
+				
+				
+				else {
 					System.out.println("incorrect combination, please try again add something here");
 				}
 			}else if (input.equals("logout")) {
@@ -290,7 +301,41 @@ public class MarketPlace {
 	}
 
 	private void updateCreds() {
-
+		String userResponse;
+		
+		String username;
+		
+		boolean pass = false;
+		boolean email = true;
+		CSVReader reader = null;
+		try {
+			reader = new CSVReader(new FileReader("bin/creds.csv"),',');
+			List<String[]> csvBody = reader.readAll();
+			updater = new Scanner(System.in);
+			
+			while(true){
+			System.out.println("What would you like to update, Password or Email?");
+			userResponse = updater.next();
+			userResponse = toTitleCase(userResponse);
+			if(userResponse.equals("Password")){
+				pass = true;
+				break;
+			}else if (userResponse.equals("Email")){
+				email = true;
+				break;
+			}else {
+				System.out.println("Invalid Response");
+			}
+			}
+			
+			for(String[] creds : csvBody){
+				
+			}
+		} catch (FileNotFoundException e) {
+			e.printStackTrace();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
 	}
 
 	private String search() {
@@ -298,8 +343,8 @@ public class MarketPlace {
 
 	}
 
-	private boolean login(String username, String password) throws FileNotFoundException {
-
+	private String login(String username, String password) throws FileNotFoundException {
+		String type = null;
 		BufferedReader reader = new BufferedReader(
 				new FileReader("bin/creds.csv"));
 		String thisLine;
@@ -314,8 +359,13 @@ public class MarketPlace {
 				user=user.toLowerCase();
 				if (user.equals(username)) {
 					if (pass.equals(password)) {
+						
 						if (userType.equals("Buyer")) {
-							Buyer buyer = new Buyer();
+							type = "Buyer";
+						}else if (userType.equals("Seller")){
+							type = "Seller";
+						}else if(userType.equals("MarketPlaceAdmin")){
+							type = "MarketPlaceAdmin";
 						}
 						loggedin = true;
 						break;
@@ -332,7 +382,7 @@ public class MarketPlace {
 			} catch (IOException e) {
 				/* ignore */ }
 		}
-		return loggedin;
+		return type;
 
 	}
 

@@ -5,11 +5,11 @@ public class Seller{
   }
   
   private void register(){
-    
+   login(); 
   }
   
   private void login(){
-    
+	  System.out.println("logged in as Seller");
   }
   
   private void updateInventory(){

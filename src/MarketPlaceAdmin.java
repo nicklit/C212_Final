@@ -1,13 +1,13 @@
 import java.io.FileNotFoundException;
 
-public class MarketPlaceAdmin extends MarketPlace{
+public class MarketPlaceAdmin{
   
   public MarketPlaceAdmin() throws FileNotFoundException{
-    
+    login();
   }
   
   private void login(){
-    
+	  System.out.println("logged in as Admin");
   }
   
   private String listBuyers(){

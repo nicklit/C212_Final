@@ -3,7 +3,7 @@ public class Buyer{
   
 	
 	public Buyer(){
-    
+		login();
 	}
   
 	private void register(){
@@ -11,7 +11,7 @@ public class Buyer{
 	}
   
   private void login(){
-    
+	  System.out.println("logged in as Buyer");
   }
   
   private void buy(Item i){
