@@ -2,6 +2,8 @@ public class Seller{
  
   public Seller(){
 	  login(); 
+	  
+	  
   }
   
   private void register(){
