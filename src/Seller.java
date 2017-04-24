@@ -17,9 +17,10 @@ public class Seller{
 	help += "\"view\" to view item inventory\n";
 	help += "\"add\" to add item to inventory\n";
 	help += "\"search\" to search for items\n";
-	help += "\"help\" anytime to see this message again\n";
+	help += "\"history\" to view sales history\n";
 	help += "\"update\" to update credentials\n";
-	help += "\"logout\" to logout\n";
+	help += "\"logout\" to logout\n\n";
+	help += "\"help\" anytime to see this message again\n";
 	
 	System.out.println(help);
   }

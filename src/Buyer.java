@@ -17,12 +17,13 @@ public class Buyer{
 	  
 	
 	help += "\"view\" to view items for sale\n";
-	help += "\"cart\" to see what is in your cart\n";
+	help += "\"cart\" to view your cart\n";
 	help += "\"search\" to search for items\n";
-	help += "\"buy\" to buy the items in your cart\n";
-	help += "\"help\" anytime to see this message again\n";
+	help += "\"buy\" to buy items in cart\n";
+	help += "\"history\" to view purchase history\n";
 	help += "\"update\" to update credentials\n";
-	help += "\"logout\" to logout\n";
+	help += "\"logout\" to logout\n\n";
+	help += "\"help\" anytime to see this message again\n";
 	
 	System.out.println(help); 
   }

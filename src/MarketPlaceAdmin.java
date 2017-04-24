@@ -7,7 +7,21 @@ public class MarketPlaceAdmin{
   }
   
   private void login(){
-	  System.out.println("logged in as Admin");
+	System.out.println("logged in as Admin");
+  
+	String help = "Enter a command below (without the quotes) to continue.\n\n";
+		  
+	help += "\"buyers\" to view all buyers\n";	
+	help += "\"sellers\" to view all sellers\n";
+	help += "\"items\" to view items for sale\n";
+	help += "\"history_b\" to view a purchase history\n";
+	help += "\"history_s\" to view a sale history\n";
+	help += "\"search\" to search for items\n";
+	help += "\"update\" to update credentials\n";
+	help += "\"logout\" to logout\n\n";
+	help += "\"help\" anytime to see this message again\n";
+		
+	System.out.println(help); 
   }
   
   private String listBuyers(){
