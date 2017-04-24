@@ -1,11 +1,13 @@
 public class Seller{
  
   public Seller(){
-    login();
+	  login(); 
+	  
+	  
   }
   
   private void register(){
-   login(); 
+	  
   }
   
   private void login(){
