@@ -9,12 +9,14 @@ import java.util.ArrayList;
 import java.util.Scanner;
 import java.util.regex.Pattern;
 
+
 public class MarketPlace {
 
 	private boolean loggedin = false;
 	private Scanner userGetter;
 	private Scanner passGetter;
 	private Scanner emailGetter;
+	private Scanner typeGetter;
 
 	public static void main(String[] args) throws FileNotFoundException {
 		MarketPlace testMarketPlace = new MarketPlace();
@@ -88,6 +90,8 @@ public class MarketPlace {
 		
 		String newEmail = newEmail();
 		
+		String accountType = accountType();
+		
 		int newID = makeID();
 		
 		try {
@@ -101,6 +105,9 @@ public class MarketPlace {
 			sb.append(newPassword);
 			sb.append(",");
 			sb.append(newEmail);
+			sb.append(",");
+			sb.append(accountType);
+			sb.append("\n");
 			
 			pw.write(sb.toString());
 			
@@ -108,13 +115,12 @@ public class MarketPlace {
 			pw.close();
 			
 		} catch (IOException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-        
 		
+		System.out.println("\nNew Account has been created!\n");
 		
-
+		System.out.print(helpMenu());
 	}
 
 	private int makeID() throws FileNotFoundException {
@@ -187,15 +193,11 @@ public class MarketPlace {
 			
 			try {
 				reader.close();
-				
 			} catch (IOException e) {
-				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
 		}
 		while(!unique);
-		
-		
 		
 		return newUsername;
 	}
@@ -213,14 +215,47 @@ public class MarketPlace {
 			System.out.print("Please enter your password again: ");
 			confimationPassword = passGetter.next();
 			
-			if (newPassword.equals(confimationPassword)){
-				break;
-			}else{
-				System.out.print("Passwords did not match, try again!\n");
-			}
+			if (newPassword.equals(confimationPassword)) break;
+			else System.out.print("Passwords did not match, try again!\n");
 		}
 		
 		return newPassword;
+	}
+	
+	private String accountType(){
+		String type;
+		
+		typeGetter = new Scanner(System.in);
+		
+		while(true){
+			System.out.print("\nWill you be a Buyer or Seller?: ");
+			type = typeGetter.next();
+			
+			type = toTitleCase(type);
+			
+			if(type.equals("Buyer") || type.equals("Seller")) break;
+			else System.out.print("Not a valid input, try again!");
+		}
+		
+		return type;
+	}
+	
+	private static String toTitleCase(String input) {
+	    StringBuilder titleCase = new StringBuilder();
+	    boolean nextTitleCase = true;
+
+	    for (char c : input.toCharArray()) {
+	        if (Character.isSpaceChar(c)) {
+	            nextTitleCase = true;
+	        } else if (nextTitleCase) {
+	            c = Character.toTitleCase(c);
+	            nextTitleCase = false;
+	        }
+
+	        titleCase.append(c);
+	    }
+
+	    return titleCase.toString();
 	}
 	
 	private String newEmail(){
@@ -239,13 +274,9 @@ public class MarketPlace {
 			System.out.print("Please enter your email again: ");
 			confimationEmail = emailGetter.next();
 			
-			if (newEmail.equals(confimationEmail) && ptr.matcher(newEmail).matches()){
-				break;
-			}else if (! (ptr.matcher(newEmail).matches())){
-				System.out.print("Not a legal email!\n");
-			}else  {
-				System.out.print("Emails did not match, try again!\n");
-			}
+			if (newEmail.equals(confimationEmail) && ptr.matcher(newEmail).matches()) break;
+			else if (!(ptr.matcher(newEmail).matches())) System.out.print("Not a legal email!\n");
+			else  System.out.print("Emails did not match, try again!\n");
 		}
 		
 		return newEmail;
