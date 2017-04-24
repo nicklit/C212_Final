@@ -45,10 +45,17 @@ public class MarketPlace {
 				userSelect = userSelect.toLowerCase();
 
 				// this is where I validate the username and password
-				if (login(userSelect, passSelect)) {
-					System.out.println("logged in");
-					System.out.println("\n" + helpMenu());
-				} else {
+				if (login(userSelect, passSelect).equals("Buyer")) {
+					Buyer buyer = new Buyer();
+					//System.out.println("\n" + helpMenu());
+				} else if(login(userSelect, passSelect).equals("MarketPlaceAdmin")) {
+					MarketPlaceAdmin admin = new MarketPlaceAdmin();
+				} else if (login(userSelect, passSelect).equals("MarketPlaceAdmin")) {
+					Seller seller = new Seller();
+				}
+				
+				
+				else {
 					System.out.println("incorrect combination, please try again add something here");
 				}
 			}else if (input.equals("logout")) {
@@ -336,8 +343,8 @@ public class MarketPlace {
 
 	}
 
-	private boolean login(String username, String password) throws FileNotFoundException {
-
+	private String login(String username, String password) throws FileNotFoundException {
+		String type = null;
 		BufferedReader reader = new BufferedReader(
 				new FileReader("bin/creds.csv"));
 		String thisLine;
@@ -352,8 +359,13 @@ public class MarketPlace {
 				user=user.toLowerCase();
 				if (user.equals(username)) {
 					if (pass.equals(password)) {
+						
 						if (userType.equals("Buyer")) {
-							Buyer buyer = new Buyer();
+							type = "Buyer";
+						}else if (userType.equals("Seller")){
+							type = "Seller";
+						}else if(userType.equals("MarketPlaceAdmin")){
+							type = "MarketPlaceAdmin";
 						}
 						loggedin = true;
 						break;
@@ -370,7 +382,7 @@ public class MarketPlace {
 			} catch (IOException e) {
 				/* ignore */ }
 		}
-		return loggedin;
+		return type;
 
 	}
 
