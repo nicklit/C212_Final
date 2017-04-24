@@ -82,7 +82,7 @@ public class MarketPlace {
 		
 		String newUsername = uniqueUsername();
 		
-		String newPassword;
+		String newPassword = newPassword();
 		
 		int newID = makeID();
 		
@@ -93,6 +93,8 @@ public class MarketPlace {
 			sb.append(Integer.toString(newID));
 			sb.append(",");
 			sb.append(newUsername);
+			sb.append(",");
+			sb.append(newPassword);
 			
 			pw.write(sb.toString());
 			
@@ -197,15 +199,25 @@ public class MarketPlace {
 	
 	private String newPassword(){
 		String newPassword;
+		String confimationPassword;
 		
 		passGetter = new Scanner(System.in);
 		
-		System.out.print("Please enter a password: ");
-		newPassword = passGetter.next();
+		while(true){
+			System.out.print("\nPlease enter a password: ");
+			newPassword = passGetter.next();
+			
+			System.out.print("Please enter your password again: ");
+			confimationPassword = passGetter.next();
+			
+			if (newPassword.equals(confimationPassword)){
+				break;
+			}else{
+				System.out.print("\nPasswords did not match, try again!");
+			}
+		}
 		
-		
-		
-		return null;
+		return newPassword;
 	}
 	
 	
