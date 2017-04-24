@@ -50,7 +50,7 @@ public class MarketPlace {
 					//System.out.println("\n" + helpMenu());
 				} else if(login(userSelect, passSelect).equals("MarketPlaceAdmin")) {
 					MarketPlaceAdmin admin = new MarketPlaceAdmin();
-				} else if (login(userSelect, passSelect).equals("MarketPlaceAdmin")) {
+				} else if (login(userSelect, passSelect).equals("Seller")) {
 					Seller seller = new Seller();
 				}
 				
