@@ -8,6 +8,7 @@ public class Buyer{
 	public Buyer(){
 		login();
 		System.out.println("Enter your password");
+		System.out.println("Enter your snassword");
 	}
   
 	private void register(){
