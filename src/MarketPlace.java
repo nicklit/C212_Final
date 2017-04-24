@@ -6,8 +6,11 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.ArrayList;
+import java.util.List;
 import java.util.Scanner;
 import java.util.regex.Pattern;
+
+import com.opencsv.CSVReader;
 
 
 public class MarketPlace {
@@ -17,6 +20,7 @@ public class MarketPlace {
 	private Scanner passGetter;
 	private Scanner emailGetter;
 	private Scanner typeGetter;
+	private Scanner updater;
 
 	public static void main(String[] args) throws FileNotFoundException {
 		MarketPlace testMarketPlace = new MarketPlace();
@@ -290,7 +294,41 @@ public class MarketPlace {
 	}
 
 	private void updateCreds() {
-
+		String userResponse;
+		
+		String username;
+		
+		boolean pass = false;
+		boolean email = true;
+		CSVReader reader = null;
+		try {
+			reader = new CSVReader(new FileReader("bin/creds.csv"),',');
+			List<String[]> csvBody = reader.readAll();
+			updater = new Scanner(System.in);
+			
+			while(true){
+			System.out.println("What would you like to update, Password or Email?");
+			userResponse = updater.next();
+			userResponse = toTitleCase(userResponse);
+			if(userResponse.equals("Password")){
+				pass = true;
+				break;
+			}else if (userResponse.equals("Email")){
+				email = true;
+				break;
+			}else {
+				System.out.println("Invalid Response");
+			}
+			}
+			
+			for(String[] creds : csvBody){
+				
+			}
+		} catch (FileNotFoundException e) {
+			e.printStackTrace();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
 	}
 
 	private String search() {
