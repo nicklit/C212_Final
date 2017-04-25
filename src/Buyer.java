@@ -8,11 +8,8 @@ public class Buyer{
 	
 	public Buyer(){
 		login();
-<<<<<<< HEAD
-
-=======
 		System.out.println("Enter your password");
->>>>>>> refs/remotes/origin/NickLit
+
 	}
   
 	private void register(){
