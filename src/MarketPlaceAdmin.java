@@ -7,7 +7,7 @@ public class MarketPlaceAdmin{
   }
   
   private void login(){
-	System.out.println("logged in as Admin");
+	System.out.println("\nLogged in as Admin\n\n");
   
 	String help = "Enter a command below (without the quotes) to continue.\n\n";
 		  
