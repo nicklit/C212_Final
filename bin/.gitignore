@@ -1,5 +1,1 @@
-/bin\Buyer.class
-/Item.class
-/bin\MarketPlace.class
-/MarketPlaceAdmin.class
-/Seller.class
+*.class

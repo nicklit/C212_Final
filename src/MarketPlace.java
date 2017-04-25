@@ -48,6 +48,7 @@ public class MarketPlace {
 				// this is where I validate the username and password
 				if (login(userSelect, passSelect).equals("Buyer")) {
 					Buyer buyer = new Buyer();
+					
 				} else if (login(userSelect, passSelect).equals("MarketPlaceAdmin")) {
 					MarketPlaceAdmin admin = new MarketPlaceAdmin();
 				} else if (login(userSelect, passSelect).equals("Seller")) {
@@ -345,14 +346,12 @@ public class MarketPlace {
 							System.out.println("Changing Email here");
 							creds[3] = newEmail();
 						}
-					}else {
-						System.out.println("No User");
 					}
 				}
 				
 				
 
-				CSVWriter writer = new CSVWriter(new FileWriter("bin/creds.csv"), ',');
+				CSVWriter writer = new CSVWriter(new FileWriter("bin/creds.csv"), ',', CSVWriter.NO_QUOTE_CHARACTER);
 				writer.writeAll(csvBody);
 				writer.flush();
 				
