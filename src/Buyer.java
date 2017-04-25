@@ -2,23 +2,17 @@ import java.io.FileNotFoundException;
 import java.util.Scanner;
 
 
-<<<<<<< HEAD
+
 public class Buyer extends MarketPlace{
- 
-=======
-public class Buyer{
-	
+
 	private Scanner userInput;
->>>>>>> refs/remotes/origin/master
+
   
 	
 	public Buyer() throws FileNotFoundException{
 		login();
-<<<<<<< HEAD
-		
-=======
 
->>>>>>> refs/remotes/origin/master
+
 	}
   
 	private void register(){
