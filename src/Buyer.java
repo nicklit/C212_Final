@@ -11,8 +11,13 @@ public class Buyer extends MarketPlace{
 	
 	public Buyer() throws FileNotFoundException{
 		login();
+<<<<<<< HEAD
 
 
+=======
+		System.out.println("Enter your password");
+
+>>>>>>> refs/remotes/origin/master
 	}
   
 	private void register(){
