@@ -1,13 +1,14 @@
+import java.io.FileNotFoundException;
 import java.util.Scanner;
 
 
-public class Buyer{
+public class Buyer extends MarketPlace{
  
   
 	
-	public Buyer(){
+	public Buyer() throws FileNotFoundException{
 		login();
-		System.out.println("Enter your password");
+		
 	}
   
 	private void register(){
