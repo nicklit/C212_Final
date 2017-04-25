@@ -11,7 +11,7 @@ public class Seller{
   }
   
   private void login(){
-	System.out.println("logged in as Seller");
+	System.out.println("\nLogged in as Seller\n\n");
 	 
 	String help = "Enter a command below (without the quotes) to continue.\n\n";
 	  
